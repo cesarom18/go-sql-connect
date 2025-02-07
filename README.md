@@ -1,0 +1,4 @@
+# Tecnologias
+- Go
+- GoDotENV
+- GoSQLDriver
