@@ -55,3 +55,17 @@ func GetById(id int) {
 		fmt.Printf("ID: %d | Name: %s | Email: %s | Phone: %s \n", client.Id, client.Name, client.Email, client.Phone)
 	}
 }
+
+// Create Client
+func CreateClient(client models.Client) {
+	connection.ConnectDB()
+	defer connection.CloseDB()
+
+	query := "INSERT INTO clients VALUES (null, ?, ?, ?)"
+	_, err := connection.Db.Exec(query, client.Name, client.Email, client.Phone)
+	// Check Query Errors
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Successfully Registered Client")
+}
