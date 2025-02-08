@@ -83,3 +83,17 @@ func UpdateClient(id int, client models.Client) {
 	}
 	fmt.Println("Successfully Updated Client")
 }
+
+// Delete Client
+func DeleteClient(id int) {
+	connection.ConnectDB()
+	defer connection.CloseDB()
+
+	query := "DELETE FROM clients WHERE id=?"
+	_, err := connection.Db.Exec(query, id)
+	// Check Query Errors
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Successfully Deleted Client")
+}

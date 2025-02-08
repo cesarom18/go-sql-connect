@@ -16,6 +16,7 @@ func main() {
 		fmt.Println("2.- Get Client By ID")
 		fmt.Println("3.- Create Client")
 		fmt.Println("4.- Update Client")
+		fmt.Println("5.- Delete Client")
 		fmt.Println("9.- Exit")
 
 		fmt.Print("Option: ")
@@ -89,6 +90,19 @@ func main() {
 			}
 
 			handlers.UpdateClient(id, client)
+		} else if input == "5" {
+			var clientID string
+
+			fmt.Print("Client ID: ")
+			fmt.Scanln(&clientID)
+			id, err := strconv.Atoi(clientID)
+
+			if err != nil {
+				fmt.Println("Error: Invalid client ID. Please enter a valid number.")
+				continue
+			}
+
+			handlers.DeleteClient(id)
 		} else if input == "9" {
 			fmt.Println("Goodbye!")
 			break
