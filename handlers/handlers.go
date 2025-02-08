@@ -69,3 +69,17 @@ func CreateClient(client models.Client) {
 	}
 	fmt.Println("Successfully Registered Client")
 }
+
+// Update Client
+func UpdateClient(id int, client models.Client) {
+	connection.ConnectDB()
+	defer connection.CloseDB()
+
+	query := "UPDATE clients SET name=?, email=?, phone=? WHERE id=?"
+	_, err := connection.Db.Exec(query, client.Name, client.Email, client.Phone, id)
+	// Check Query Errors
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("Successfully Updated Client")
+}

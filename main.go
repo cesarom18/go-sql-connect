@@ -15,6 +15,7 @@ func main() {
 		fmt.Println("1.- Get All Clients")
 		fmt.Println("2.- Get Client By ID")
 		fmt.Println("3.- Create Client")
+		fmt.Println("4.- Update Client")
 		fmt.Println("9.- Exit")
 
 		fmt.Print("Option: ")
@@ -57,6 +58,37 @@ func main() {
 
 			handlers.CreateClient(client)
 
+		} else if input == "4" {
+			var clientID string
+			var clientName string
+			var clientEmail string
+			var clientPhone string
+
+			fmt.Print("Client ID: ")
+			fmt.Scanln(&clientID)
+			id, err := strconv.Atoi(clientID)
+
+			if err != nil {
+				fmt.Println("Error: Invalid client ID. Please enter a valid number.")
+				continue
+			}
+
+			fmt.Print("Client Name: ")
+			fmt.Scanln(&clientName)
+
+			fmt.Print("Client Email: ")
+			fmt.Scanln(&clientEmail)
+
+			fmt.Print("Client Phone: ")
+			fmt.Scanln(&clientPhone)
+
+			client := models.Client{
+				Name:  clientName,
+				Email: clientEmail,
+				Phone: clientPhone,
+			}
+
+			handlers.UpdateClient(id, client)
 		} else if input == "9" {
 			fmt.Println("Goodbye!")
 			break
